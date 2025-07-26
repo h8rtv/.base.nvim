@@ -2,7 +2,7 @@
 
 My base configuration for neovim, like a personal simple distro.
 
-I import it into my neovim main configs with lazy using the following spec:
+I usually have the repo cloned, and import it into my main configs with lazy.nvim using the following spec:
 
 ```lua
 require('lazy').setup({
