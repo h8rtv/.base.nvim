@@ -1,6 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
+  event = 'VimEnter',
   dependencies = {
     'nvim-lua/plenary.nvim',
     {
@@ -12,28 +13,27 @@ return {
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
   },
-  opts = {
-    defaults = {
-      mappings = {
-        i = {
-          ['<C-q>'] =
-              function()
-                require('telescope.actions').smart_send_to_qflist()
-                require('telescope.actions').open_qflist(69)
-              end,
-          ['<C-d>'] = 'delete_buffer',
+  config = function()
+    local telescope = require('telescope')
+    local actions = require('telescope.actions')
+    local themes = require('telescope.themes')
+
+    pcall(telescope.load_extension, 'fzf')
+    pcall(telescope.load_extension, 'ui-select')
+
+    telescope.setup {
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+            ['<C-d>'] = actions.delete_buffer,
+          }
         }
-      }
-    },
-    extensions = {
-      ['ui-select'] = function()
-        require('telescope.themes').get_dropdown()
-      end,
-    },
-  },
-  init = function()
-    pcall(require('telescope').load_extension, 'fzf')
-    pcall(require('telescope').load_extension, 'ui-select')
+      },
+      extensions = {
+        ['ui-select'] = themes.get_dropdown
+      },
+    }
   end,
   keys = {
     { 'grr',              function() require('telescope.builtin').lsp_references() end,       desc = '[G]oto [R]eferences' },
