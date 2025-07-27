@@ -17,8 +17,10 @@ return {
       mappings = {
         i = {
           ['<C-q>'] =
-              require('telescope.actions').smart_send_to_qflist +
-              require('telescope.actions').open_qflist,
+              function()
+                require('telescope.actions').smart_send_to_qflist()
+                require('telescope.actions').open_qflist(69)
+              end ,
           ['<C-d>'] = 'delete_buffer',
         }
       }
@@ -34,20 +36,20 @@ return {
     pcall(require('telescope').load_extension, 'ui-select')
   end,
   keys = {
-    { 'grr',              require('telescope.builtin').lsp_references,           desc = '[G]oto [R]eferences' },
-    { 'gri',              require('telescope.builtin').lsp_implementations,      desc = '[G]oto [I]mplementations' },
-    { 'grd',              require('telescope.builtin').lsp_definitions,          desc = '[G]oto [D]efinitions' },
-    { 'gO',               require('telescope.builtin').lsp_document_symbols,     desc = 'Open Document Symbols' },
-    { 'grt',              require('telescope.builtin').lsp_type_definitions,     desc = '[G]oto [T]ype Definition' },
-    { '<leader>sh',       require('telescope.builtin').help_tags,                desc = '[S]earch [H]elp' },
-    { '<leader>sk',       require('telescope.builtin').keymaps,                  desc = '[S]earch [K]eymaps' },
-    { '<leader>sf',       require('telescope.builtin').find_files,               desc = '[S]earch [F]iles' },
-    { '<leader>sw',       require('telescope.builtin').grep_string,              desc = '[S]earch current [W]ord' },
-    { '<leader>sg',       require('telescope.builtin').live_grep,                desc = '[S]earch by [G]rep' },
-    { '<leader>sd',       require('telescope.builtin').diagnostics,              desc = '[S]earch [D]iagnostics' },
-    { '<leader>sr',       require('telescope.builtin').resume,                   desc = '[S]earch [R]esume' },
-    { '<leader>s.',       require('telescope.builtin').oldfiles,                 desc = '[S]earch Recent Files ("." for repeat)' },
-    { '<leader><leader>', function() require('telescope.builtin').buffers() end, desc = '[ ] Find existing buffers' },
+    { 'grr',              function() require('telescope.builtin').lsp_references() end,       desc = '[G]oto [R]eferences' },
+    { 'gri',              function() require('telescope.builtin').lsp_implementations() end,  desc = '[G]oto [I]mplementations' },
+    { 'grd',              function() require('telescope.builtin').lsp_definitions() end,      desc = '[G]oto [D]efinitions' },
+    { 'gO',               function() require('telescope.builtin').lsp_document_symbols() end, desc = 'Open Document Symbols' },
+    { 'grt',              function() require('telescope.builtin').lsp_type_definitions() end, desc = '[G]oto [T]ype Definition' },
+    { '<leader>sh',       function() require('telescope.builtin').help_tags() end,            desc = '[S]earch [H]elp' },
+    { '<leader>sk',       function() require('telescope.builtin').keymaps() end,              desc = '[S]earch [K]eymaps' },
+    { '<leader>sf',       function() require('telescope.builtin').find_files() end,           desc = '[S]earch [F]iles' },
+    { '<leader>sw',       function() require('telescope.builtin').grep_string() end,          desc = '[S]earch current [W]ord' },
+    { '<leader>sg',       function() require('telescope.builtin').live_grep() end,            desc = '[S]earch by [G]rep' },
+    { '<leader>sd',       function() require('telescope.builtin').diagnostics() end,          desc = '[S]earch [D]iagnostics' },
+    { '<leader>sr',       function() require('telescope.builtin').resume() end,               desc = '[S]earch [R]esume' },
+    { '<leader>s.',       function() require('telescope.builtin').oldfiles() end,             desc = '[S]earch Recent Files ("." for repeat)' },
+    { '<leader><leader>', function() require('telescope.builtin').buffers() end,              desc = '[ ] Find existing buffers' },
     {
       '<leader>/',
       function()
