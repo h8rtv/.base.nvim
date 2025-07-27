@@ -7,4 +7,9 @@ return {
         require('nordic').load()
     end,
   },
+  {
+    'echasnovski/mini.statusline',
+    version = false,
+    opts = { use_icons = false },
+  },
 }

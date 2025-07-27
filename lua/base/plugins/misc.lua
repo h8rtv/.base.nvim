@@ -9,9 +9,4 @@ return {
     version = false,
     opts = {},
   },
-  {
-    'echasnovski/mini.statusline',
-    version = false,
-    opts = { use_icons = false },
-  },
 }
