@@ -20,15 +20,15 @@ return {
               function()
                 require('telescope.actions').smart_send_to_qflist()
                 require('telescope.actions').open_qflist(69)
-              end ,
+              end,
           ['<C-d>'] = 'delete_buffer',
         }
       }
     },
     extensions = {
-      ['ui-select'] = {
-        require('telescope.themes').get_dropdown(),
-      },
+      ['ui-select'] = function()
+        require('telescope.themes').get_dropdown()
+      end,
     },
   },
   init = function()
