@@ -1,4 +1,5 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>')
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
 
 vim.keymap.set('v', '<leader>cp', '"+y', { desc = 'Copy to clipboard' })
 vim.keymap.set('n', '<leader>cv', '"+p', { desc = 'Paste from clipboard' })
