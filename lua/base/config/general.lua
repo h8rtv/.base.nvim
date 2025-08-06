@@ -1,4 +1,5 @@
 vim.o.showmode = false
+vim.o.cmdheight = 0
 
 vim.wo.number = true
 vim.wo.relativenumber = true

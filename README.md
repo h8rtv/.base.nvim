@@ -8,6 +8,7 @@ I usually have the repo cloned, and import it into my main configs with lazy.nvi
 require('lazy').setup({
   spec = {
     {
+      'h8rtv/.base.nvim',
       dir = vim.fn.expand('~/.base.nvim'),
       opts = {},
       import = 'base.plugins',

@@ -17,6 +17,7 @@ return {
     local telescope = require('telescope')
     local actions = require('telescope.actions')
     local themes = require('telescope.themes')
+    local builtin = require('telescope.builtin')
 
     pcall(telescope.load_extension, 'fzf')
     pcall(telescope.load_extension, 'ui-select')
@@ -34,38 +35,34 @@ return {
         ['ui-select'] = themes.get_dropdown
       },
     }
+
+    local function map(l, r, desc)
+      vim.keymap.set('n', l, r, { desc = desc })
+    end
+    map('grr', builtin.lsp_references, '[G]oto [R]eferences')
+    map('gri', builtin.lsp_implementations, '[G]oto [I]mplementations')
+    map('grd', builtin.lsp_definitions, '[G]oto [D]efinitions')
+    map('gO', builtin.lsp_document_symbols, 'Open Document Symbols')
+    map('grt', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
+    map('<leader>sh', builtin.help_tags, '[S]earch [H]elp')
+    map('<leader>sk', builtin.keymaps, '[S]earch [K]eymaps')
+    map('<leader>sf', builtin.find_files, '[S]earch [F]iles')
+    map('<leader>sw', builtin.grep_string, '[S]earch current [W]ord')
+    map('<leader>sg', builtin.live_grep, '[S]earch by [G]rep')
+    map('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
+    map('<leader>sr', builtin.resume, '[S]earch [R]esume')
+    map('<leader>s.', builtin.oldfiles, '[S]earch Recent Files ("." for repeat)')
+    map('<leader><leader>', builtin.buffers, '[ ] Find existing buffers')
+    local function curr_buf_fuzzy_find()
+      builtin.current_buffer_fuzzy_find(themes.get_dropdown {
+        winblend = 10,
+        previewer = false,
+      })
+    end
+    map('<leader>/', curr_buf_fuzzy_find, '[/] Fuzzily search in current buffer')
+    local function find_config_files()
+      builtin.find_files { cwd = vim.fn.stdpath 'config' }
+    end
+    map('<leader>sn', find_config_files, '[S]earch [N]eovim files')
   end,
-  keys = {
-    { 'grr',              function() require('telescope.builtin').lsp_references() end,       desc = '[G]oto [R]eferences' },
-    { 'gri',              function() require('telescope.builtin').lsp_implementations() end,  desc = '[G]oto [I]mplementations' },
-    { 'grd',              function() require('telescope.builtin').lsp_definitions() end,      desc = '[G]oto [D]efinitions' },
-    { 'gO',               function() require('telescope.builtin').lsp_document_symbols() end, desc = 'Open Document Symbols' },
-    { 'grt',              function() require('telescope.builtin').lsp_type_definitions() end, desc = '[G]oto [T]ype Definition' },
-    { '<leader>sh',       function() require('telescope.builtin').help_tags() end,            desc = '[S]earch [H]elp' },
-    { '<leader>sk',       function() require('telescope.builtin').keymaps() end,              desc = '[S]earch [K]eymaps' },
-    { '<leader>sf',       function() require('telescope.builtin').find_files() end,           desc = '[S]earch [F]iles' },
-    { '<leader>sw',       function() require('telescope.builtin').grep_string() end,          desc = '[S]earch current [W]ord' },
-    { '<leader>sg',       function() require('telescope.builtin').live_grep() end,            desc = '[S]earch by [G]rep' },
-    { '<leader>sd',       function() require('telescope.builtin').diagnostics() end,          desc = '[S]earch [D]iagnostics' },
-    { '<leader>sr',       function() require('telescope.builtin').resume() end,               desc = '[S]earch [R]esume' },
-    { '<leader>s.',       function() require('telescope.builtin').oldfiles() end,             desc = '[S]earch Recent Files ("." for repeat)' },
-    { '<leader><leader>', function() require('telescope.builtin').buffers() end,              desc = '[ ] Find existing buffers' },
-    {
-      '<leader>/',
-      function()
-        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end,
-      desc = '[/] Fuzzily search in current buffer',
-    },
-    {
-      '<leader>sn',
-      function()
-        require('telescope.builtin').find_files { cwd = vim.fn.stdpath 'config' }
-      end,
-      desc = '[S]earch [N]eovim files',
-    },
-  },
 }

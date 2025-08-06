@@ -1,10 +1,10 @@
 return {
   {
-    'AlexvZyl/nordic.nvim',
+    'yorumicolors/yorumi.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      require('nordic').load {}
+      vim.cmd('colorscheme yorumi')
     end,
   },
   {
@@ -12,4 +12,5 @@ return {
     version = false,
     opts = { use_icons = false },
   },
+  { 'j-hui/fidget.nvim', opts = {} },
 }
