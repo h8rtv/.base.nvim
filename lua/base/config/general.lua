@@ -1,5 +1,4 @@
 vim.o.showmode = false
-vim.o.cmdheight = 0
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -9,6 +8,7 @@ vim.o.breakindent = true
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.wildignorecase = true
 
 vim.o.undofile = true
 

@@ -1,9 +1,11 @@
 return {
-  setup = function()
+  setup = function(opts)
     require 'base.config.general'
     require 'base.config.keymaps'
     require 'base.config.autocmds'
     require 'base.config.diagnostic'
-    require 'base.config.autocompletion'
+    if opts.autocompletion then
+      require 'base.config.autocompletion'
+    end
   end,
 }
