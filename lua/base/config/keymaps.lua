@@ -7,5 +7,5 @@ vim.keymap.set('n', '<leader>cv', '"+p', { desc = 'Paste from clipboard' })
 local function async_format()
   vim.lsp.buf.format { async = true }
 end
-vim.keymap.set('n', '<leader>f', async_format, { desc = '[F]ormat file' })
+vim.keymap.set('n', '<leader>fo', async_format, { desc = '[F][o]rmat file' })
 vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
