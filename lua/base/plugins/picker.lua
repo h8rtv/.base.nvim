@@ -2,7 +2,14 @@ return {
   "ibhagwan/fzf-lua",
   config = function()
     local fzf = require('fzf-lua')
-    fzf.setup({ 'max-perf' })
+    fzf.setup({
+      'max-perf',
+      keymap = {
+        fzf = {
+          ['alt-p'] = 'toggle-preview',
+        },
+      },
+    })
 
     local function map(l, r, desc)
       vim.keymap.set('n', l, r, { desc = desc })
