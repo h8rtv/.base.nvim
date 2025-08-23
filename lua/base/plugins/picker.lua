@@ -1,16 +1,17 @@
 return {
   "ibhagwan/fzf-lua",
-  config = function()
+  config = function(_, opts)
     local fzf = require('fzf-lua')
-    fzf.setup({
-      'max-perf',
+    fzf.setup(vim.tbl_deep_extend('force', {
+      'fzf-native',
       keymap = {
         fzf = {
-          ['alt-p'] = 'toggle-preview',
+          ['ctrl-d'] = 'preview-down',
+          ['ctrl-u'] = 'preview-up',
+          ['ctrl-l'] = 'toggle-preview',
         },
       },
-    })
-
+    }, opts))
     local function map(l, r, desc)
       vim.keymap.set('n', l, r, { desc = desc })
     end
