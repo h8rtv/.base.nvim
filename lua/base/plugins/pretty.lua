@@ -1,10 +1,10 @@
 return {
   {
-    'yorumicolors/yorumi.nvim',
+    'rebelot/kanagawa.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd('colorscheme yorumi')
+      vim.cmd([[colorscheme kanagawa-dragon]])
     end,
   },
   {
